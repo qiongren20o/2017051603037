@@ -1,29 +1,37 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import math
-while True:
-    print('本程序用来计算ax^2+bx+c=0的两个根')
-    print('使用请输入continue，退出请输入exit')
-    XZ = input()
-    if XZ == 'continue':
-        def PFG(a,b,c):
-            #math.sqrt() 计算平方根
-            x1 = (-b+(math.sqrt((b**2)-4*a*c)))/(2*a)
-            x2 = (-b-(math.sqrt((b**2)-4*a*c)))/(2*a)
-            return x1,x2
-        print("请输入a，按回车结束输入")
-        x = input()
-        print("请输入b，按回车结束输入")
-        y = input()
-        print("请输入c，按回车结束输入")
-        z = input()
-        p = PFG(int(x),int(y),int(z))
-        print('第一个根是',p[0])
-        print('第二个根是',p[1])
-    elif XZ == 'exit':
-        print('谢谢使用，回车结束')
-        a = input()
-        exit()
-    else:
-        print('输入错误，请重新输入')
+
+def quadratic(a, b, c):
+		a = int(a)
+		b = int(b)
+		c = int(c)
+		if   ( (b**2 - 4 * a * c) < 0 ):
+			print('没有根')
+			pass
+		elif ( (b**2 - 4 * a * c) == 0 ):
+			print('唯一根')
+			outcome = -b / 2*a
+			print(outcome)
+			pass
+		elif ( (b**2 - 4 * a * c) > 0 ):
+			outcome1 = ( -b + math.sqrt(b**2 - 4*a*c) )/2*a
+			outcome2 = ( -b - math.sqrt(b**2 - 4*a*c) )/2*a
+			print('根为')
+			print('%.1f , %.1f' % (outcome1,outcome2))
+			pass
+
+def isnub(s):
+	try:
+		nb = float(s)
+		return True
+	except ValueError as e:
+		return False
+
+while 1:
+	a = input('a\n')
+	b = input('b\n')
+	c = input('c\n')
+	if not ( isnub(a) and isnub(b) and isnub(c) ):
+		print('input digit please')
+		continue
+	else:
+		quadratic(a, b, c)
